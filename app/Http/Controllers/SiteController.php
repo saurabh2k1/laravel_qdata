@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SiteController extends Controller
 {
+    
+    // public function __construct()
+    // {
+    //     $this->middleware('auth'); 
+    // }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,10 @@ class SiteController extends Controller
      */
     public function index()
     {
-        //
+        $sites = Site::latest()->paginate(5);
+
+        return view('sites.index', compact('sites'))
+            ->with('i', (request()->input('page', 1) -1) * 5);
     }
 
     /**
@@ -24,7 +33,7 @@ class SiteController extends Controller
      */
     public function create()
     {
-        //
+        return view('sites.create');
     }
 
     /**
@@ -35,7 +44,20 @@ class SiteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'code' => 'bail|required|unique:sites|max:10', 
+            'name' => 'required|max:255', 
+            'contact_person' => 'required|max:255', 
+            'address' => 'required',
+        ]);
+        // if ($request->user()->can('create-tasks')) {
+        //     //Code goes here
+        // }
+
+        Site::create($request->all());
+
+        return redirect()->route('sites.index')
+            ->with('success', 'Site created successfully.');
     }
 
     /**
@@ -46,7 +68,7 @@ class SiteController extends Controller
      */
     public function show(Site $site)
     {
-        //
+        return view('sites.show', compact('site'));
     }
 
     /**
@@ -57,7 +79,7 @@ class SiteController extends Controller
      */
     public function edit(Site $site)
     {
-        //
+        return view('sites.edit', compact('site'));
     }
 
     /**
@@ -69,7 +91,17 @@ class SiteController extends Controller
      */
     public function update(Request $request, Site $site)
     {
-        //
+        $request->validate([
+            'code' => 'bail|required|max:10', 
+            'name' => 'required|max:255', 
+            'contact_person' => 'required|max:255', 
+            'address' => 'required',
+        ]);
+
+        $site->update($request->all());
+
+        return redirect()->route('sites.index')
+            ->with('success', 'Site updated successfully');
     }
 
     /**
@@ -80,6 +112,9 @@ class SiteController extends Controller
      */
     public function destroy(Site $site)
     {
-        //
+        $site->delete();
+
+        return redirect()->route('sites.index')
+            ->with('success', 'Site deleted successfully');
     }
 }
