@@ -6,15 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
-class Site extends Model
+class Study extends Model
 {
     use SoftDeletes;
 
-    
-    protected $fillable = [
-        'code', 'name', 'contact_person', 'address',
-        'created_by', 'updated_by'
-    ];
+    protected $fillable =[ 'code', 'name', 'created_by', 'updated_by'];
 
     protected $dates = ['deleted_at'];
 
@@ -29,9 +25,5 @@ class Site extends Model
             $user = Auth::user();
             $model->updated_by = $user->id;
         });
-    }
-
-    public function users(){
-        return $this->hasMany('App\Users');
     }
 }

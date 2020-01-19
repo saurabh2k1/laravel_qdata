@@ -1,4 +1,5 @@
-@extends('sites/layout')
+{{-- @extends('sites/layout') --}}
+@extends('layouts.app')
 
 @section('content')
     <div class="row">
