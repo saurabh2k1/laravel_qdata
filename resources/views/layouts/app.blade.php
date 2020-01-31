@@ -56,7 +56,7 @@
                                 
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    Last Login: {{ $user->lastLogin->timestamp->timezone('Asia/Kolkata') }}
+                                    Last Login: {{ Auth::user()->lastLogin->timestamp->timezone('Asia/Kolkata') }}
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
