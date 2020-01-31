@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Study', 'study_user');
     }
+
+    public function login_details()
+    {
+        return $this->hasMany('App\LoginDetail');
+    }
+
+    public function lastLogin()
+    {
+        return $this->hasOne('App\LoginDetail')->latest();
+    }
 }

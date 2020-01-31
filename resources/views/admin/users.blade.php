@@ -21,7 +21,7 @@
     <thead class="thead-dark">
         <tr>
             <th>#</th><th>Name</th><th>Username</th><th>Assigned Sites</th>
-            <th>Allocated Studies</th><th>Actions</th>
+            <th>Allocated Studies</th><th>Last Login Details</th><th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -40,6 +40,9 @@
                         {{$study->name}}
                     @endforeach
                 </td>
+                <td>Terminal IP :{{ $user->lastLogin->terminal }} <br> 
+                    Timestamp : {{ $user->lastLogin->timestamp->timezone('Asia/Kolkata') }}
+                </td>    
                 <td>
                 <a href="{{ route('assignUser', $user)}}" class="btn btn-info">Change Assignment</a>
                 </td>
