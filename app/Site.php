@@ -32,6 +32,6 @@ class Site extends Model
     }
 
     public function users(){
-        return $this->hasMany('App\Users');
+        return $this->nelongsToMany('App\Users', 'site_user');
     }
 }

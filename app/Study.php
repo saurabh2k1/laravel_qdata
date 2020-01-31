@@ -26,4 +26,9 @@ class Study extends Model
             $model->updated_by = $user->id;
         });
     }
+
+    public function users()
+    {
+        return $this->nelongsToMany('App\Users', 'study_user');
+    }
 }

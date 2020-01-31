@@ -25,6 +25,9 @@ Route::resource('studies', 'StudyController');
 
 Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 Route::post('register', 'Auth\RegisterController@register');
+Route::get('/admin/{user}/assignsite', 'AssignStudySite@ShowAssign')->name('assignUser');
+Route::put('/admin/{user}/assignsite', 'AssignStudySite@Assign')->name('assignUser');
+Route::get('users', 'UserController@showAll')->name('users');
 
 // Route::group(['middleware' => 'role:developer'], function() {
 

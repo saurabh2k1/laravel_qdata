@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                <h2>Studies</h2>
+                @include('partials.adminnavigation')
             </div>
             <div class="float-right">
             <a class="btn btn-success" href="{{ route('studies.create')}}">Create New Study</a>

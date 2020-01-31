@@ -39,7 +39,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function site(){
-        return $this->belongsTo('App\Site');
+    public function sites(){
+        return $this->belongsToMany('App\Site', 'site_user');
+    }
+
+    public function studies()
+    {
+        return $this->belongsToMany('App\Study', 'study_user');
     }
 }

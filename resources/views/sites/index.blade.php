@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-
+                @include('partials.adminnavigation')
             </div>
             <div class="float-right">
             <a class="btn btn-success" href="{{ route('sites.create')}}">Create New Site</a>
