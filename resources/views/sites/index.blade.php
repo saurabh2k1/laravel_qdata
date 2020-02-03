@@ -8,7 +8,7 @@
                 @include('partials.adminnavigation')
             </div>
             <div class="float-right">
-            <a class="btn btn-success" href="{{ route('sites.create')}}">Create New Site</a>
+            <a class="btn btn-success" href="{{ route('sites.create')}}"> <i class="fas fa-plus"></i> New Site</a>
             </div>
         </div>
     </div>
@@ -33,12 +33,15 @@
                     <td>{{ $site->contact_person }}</td>
                     <td>{{ $site->address }}</td>
                     <td>
-                    <a class="btn btn-info" href="{{ route('sites.show', $site->id) }}">Show</a>
-                    <a class="btn btn-primary" href="{{ route('sites.edit', $site->id) }}">Edit</a>
+                    
                     <form action="{{ route('sites.destroy', $site->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <div class="btn-group" role="group" aria-label="actions buttons">
+                        <a class="btn btn-info" href="{{ route('sites.show', $site->id) }}" title="Show"> <i class="fas fa-eye"></i> </a>
+                        <a class="btn btn-warning" href="{{ route('sites.edit', $site->id) }}" title="Edit"> <i class="fas fa-edit"></i> </a>
+                        <button type="submit" class="btn btn-danger" title="Delete"> <i class="fas fa-trash-alt"></i> </button>
+                        </div>
                     </form>
                     </td>
                 </tr>

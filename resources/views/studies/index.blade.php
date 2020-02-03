@@ -7,7 +7,7 @@
                 @include('partials.adminnavigation')
             </div>
             <div class="float-right">
-            <a class="btn btn-success" href="{{ route('studies.create')}}">Create New Study</a>
+            <a class="btn btn-success" href="{{ route('studies.create')}}"><i class="fas fa-plus"></i> New Study</a>
             </div>
         </div>
     </div>
@@ -30,12 +30,15 @@
                     <td>{{ $study->code }}</td>
                     <td>{{ $study->name }}</td>
                     <td>
-                        <a class="btn btn-info" href="{{ route('studies.show', $study->id) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('studies.edit', $study->id) }}">Edit</a>
+                        
                         <form action="{{ route('studies.destroy', $study->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <div class="btn-group" role="group" aria-label="actions buttons">
+                                <a class="btn btn-secondary" href="{{ route('studies.show', $study->id) }}"><i class="fas fa-eye"></i></a>
+                                <a class="btn btn-secondary" href="{{ route('studies.edit', $study->id) }}"><i class="fas fa-edit"></i></a>
+                                <button type="submit" class="btn btn-secondary"><i class="fas fa-trash-alt"></i> </button>
+                            </div>
                         </form>
                     </td>
                 </tr>

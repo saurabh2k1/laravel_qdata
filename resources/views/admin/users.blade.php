@@ -7,7 +7,7 @@
             @include('partials.adminnavigation')
         </div>
         <div class="float-right">
-        <a class="btn btn-success" href="{{ route('register')}}">Create New User</a>
+        <a class="btn btn-success" href="{{ route('register')}}"> <i class="fas fa-plus"></i> New User</a>
         </div>
     </div>
 </div>
@@ -40,8 +40,14 @@
                         {{$study->name}}
                     @endforeach
                 </td>
-                <td>Terminal IP :{{ $user->lastLogin->terminal }} <br> 
-                    Timestamp : {{ $user->lastLogin->timestamp->timezone('Asia/Kolkata') }}
+                <td>
+                    @if ($user->lastLogin()->count())
+                        Terminal IP :{{ $user->lastLogin->terminal }} <br> 
+                        Timestamp : {{ $user->lastLogin->timestamp->timezone('Asia/Kolkata') }}
+                    @else
+                        Never login yet!
+                    @endif
+                    
                 </td>    
                 <td>
                 <a href="{{ route('assignUser', $user)}}" class="btn btn-info">Change Assignment</a>
