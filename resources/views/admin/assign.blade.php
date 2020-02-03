@@ -36,7 +36,7 @@
                         <label for="name" class="control-label">Assign Site</label>
                         <select class="custom-select" name="sites[]" id="site" multiple >
                             @foreach ($sites as $site)
-                        <option value="{{ $site->id }}">{{ $site->name }}</option>
+                        <option value="{{ $site->id }}" {{$user->hasSite($site)? 'selected': ''}}>{{ $site->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -48,7 +48,7 @@
                         <label for="name" class="control-label">Assign Study</label>
                         <select class="custom-select" name="studies[]" id="study" multiple >
                             @foreach ($studies as $study)
-                        <option value="{{ $study->id }}">{{ $study->name }}</option>
+                        <option value="{{ $study->id }}" {{$user->hasStudy($study)? 'selected': ''}} >{{ $study->name }}</option>
                             @endforeach
                         </select>
                     </div>

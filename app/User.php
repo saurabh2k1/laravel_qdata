@@ -57,4 +57,14 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\LoginDetail')->latest();
     }
+
+    public function hasSite(Site $site)
+    {
+        return $this->sites->contains($site);
+    }
+
+    public function hasStudy(Study $study)
+    {
+        return $this->studies->contains($study);
+    }
 }

@@ -31,12 +31,12 @@ class AssignStudySite extends Controller
 
     public function AssignSite(User $user, $sites)
    {  
-      $user->sites()->attach($sites); 
+      $user->sites()->sync($sites); 
    }
 
    public function AssignStudy(User $user, $studies)
    {
-      $user->studies()->attach($studies);
+      $user->studies()->sync($studies);
    }
    
 

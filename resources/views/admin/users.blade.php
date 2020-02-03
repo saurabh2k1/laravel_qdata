@@ -32,12 +32,12 @@
                 <td>{{ $user->email }}</td>
                 <td>
                     @foreach ($user->sites as $site)
-                        {{$site->name}}
+                        {{$site->name}} <br>
                     @endforeach
                 </td>
                 <td>
                     @foreach ($user->studies as $study)
-                        {{$study->name}}
+                        {{$study->name}} <br>
                     @endforeach
                 </td>
                 <td>
