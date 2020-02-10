@@ -5,7 +5,8 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="float-left">
-                @include('partials.adminnavigation')
+                {{-- @include('partials.adminnavigation') --}}
+                <h2>Sites Management</h2>
             </div>
             <div class="float-right">
             <a class="btn btn-success" href="{{ route('sites.create')}}"> <i class="fas fa-plus"></i> New Site</a>
@@ -39,8 +40,12 @@
                         @method('DELETE')
                         <div class="btn-group" role="group" aria-label="actions buttons">
                         <a class="btn btn-info" href="{{ route('sites.show', $site->id) }}" title="Show"> <i class="fas fa-eye"></i> </a>
+                        @can('site-edit')
                         <a class="btn btn-warning" href="{{ route('sites.edit', $site->id) }}" title="Edit"> <i class="fas fa-edit"></i> </a>
+                        @endcan
+                        @can('site-delete')
                         <button type="submit" class="btn btn-danger" title="Delete"> <i class="fas fa-trash-alt"></i> </button>
+                        @endcan
                         </div>
                     </form>
                     </td>

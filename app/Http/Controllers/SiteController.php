@@ -8,10 +8,16 @@ use Illuminate\Http\Request;
 class SiteController extends Controller
 {
     
-    // public function __construct()
-    // {
-    //     $this->middleware('auth'); 
-    // }
+    public function __construct()
+    {
+        $this->middleware('permission:site-list|site-create|site-edit|site-delete', ['only' => ['index','show']]);
+
+        $this->middleware('permission:site-create', ['only' => ['create','store']]);
+
+        $this->middleware('permission:site-edit', ['only' => ['edit','update']]);
+
+        $this->middleware('permission:site-delete', ['only' => ['destroy']]);
+    }
     
     /**
      * Display a listing of the resource.
@@ -50,9 +56,7 @@ class SiteController extends Controller
             'contact_person' => 'required|max:255', 
             'address' => 'required',
         ]);
-        // if ($request->user()->can('create-tasks')) {
-        //     //Code goes here
-        // }
+        
 
         Site::create($request->all());
 

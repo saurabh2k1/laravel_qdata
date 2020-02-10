@@ -19,22 +19,24 @@ Auth::routes(['register' => false]);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('sites', 'SiteController');
 
-Route::resource('studies', 'StudyController');
 
-Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-Route::post('register', 'Auth\RegisterController@register');
-Route::get('/admin/{user}/assignsite', 'AssignStudySite@ShowAssign')->name('assignUser');
-Route::put('/admin/{user}/assignsite', 'AssignStudySite@Assign')->name('assignUser');
-Route::get('users', 'UserController@showAll')->name('users');
+// Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+// Route::post('register', 'Auth\RegisterController@register');
 
-// Route::group(['middleware' => 'role:developer'], function() {
+// Route::get('users', 'UserController@showAll')->name('users');
 
-//     Route::get('/admin', function() {
- 
-//        return 'Welcome Admin';
-       
-//     });
- 
-//  });
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('roles','RoleController');
+
+    Route::resource('users','UserController');
+
+    Route::resource('sites', 'SiteController');
+
+    Route::resource('studies', 'StudyController');
+    
+    Route::get('/admin/{user}/assignsite', 'AssignStudySite@ShowAssign')->name('assignUser');
+    Route::put('/admin/{user}/assignsite', 'AssignStudySite@Assign')->name('assignUser');
+
+});
